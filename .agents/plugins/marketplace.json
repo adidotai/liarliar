@@ -1,0 +1,12 @@
+{
+  "name": "liarliar",
+  "interface": { "displayName": "liarliar" },
+  "plugins": [
+    {
+      "name": "liarliar",
+      "source": { "source": "url", "url": "./" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "category": "Developer Tools"
+    }
+  ]
+}

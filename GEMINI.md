@@ -1,0 +1,1 @@
+@./skills/liarliar/SKILL.md

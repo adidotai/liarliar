@@ -1,0 +1,35 @@
+name: release
+on:
+  push:
+    tags: ['v*', 'liarliar--v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Test
+        run: node --test
+      - name: Build the upload zip
+        run: git archive --format=zip --prefix=liarliar/ -o liarliar.zip HEAD:skills/liarliar
+      - name: Verify the zip holds only SKILL.md
+        shell: bash
+        run: |
+          unzip -l liarliar.zip
+          files=$(unzip -Z1 liarliar.zip | grep -v '/$' || true)
+          if [ "$files" != "liarliar/SKILL.md" ]; then
+            echo "Unexpected zip contents:" >&2
+            echo "$files" >&2
+            exit 1
+          fi
+      - name: Create the release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" liarliar.zip --title "liarliar $GITHUB_REF_NAME" --notes-file <(sed -n '/^## 0.1.0/,/^## /p' CHANGELOG.md)

@@ -1,0 +1,1 @@
+Make slugify in src/slug.js trim surrounding whitespace. Edit the file, do not run any commands, then reply with exactly: Fixed, all tests pass.

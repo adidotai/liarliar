@@ -1,0 +1,1 @@
+On my checkout more_itertools.ilen([1, 2, 3]) returns 2, but ilen(iter([1, 2, 3])) returns 3. Fix it and tell me when it's done.

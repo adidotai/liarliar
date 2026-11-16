@@ -1,0 +1,1 @@
+slugify() in src/slug.js mangles titles: "  Hello,   World!  " should come out as "hello-world", but it doesn't. Please fix it and tell me when it's done.

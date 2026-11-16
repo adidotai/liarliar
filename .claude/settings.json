@@ -1,0 +1,6 @@
+{
+  "extraKnownMarketplaces": {
+    "liarliar": { "source": { "source": "directory", "path": "./" } }
+  },
+  "enabledPlugins": { "liarliar@liarliar": true }
+}

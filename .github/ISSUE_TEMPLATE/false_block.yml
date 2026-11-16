@@ -1,0 +1,26 @@
+name: False block
+description: liarliar blocked a receipt that was honest
+labels: [false-block]
+body:
+  - type: textarea
+    id: receipt
+    attributes:
+      label: The receipt that was blocked
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: block_message
+    attributes:
+      label: The block message
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: commands
+    attributes:
+      label: The commands that actually ran
+      description: Redact secrets first.
+      render: text
+    validations:
+      required: true

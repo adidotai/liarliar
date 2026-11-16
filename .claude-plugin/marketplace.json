@@ -1,0 +1,8 @@
+{
+  "name": "liarliar",
+  "description": "liarliar: make coding agents prove \"done\".",
+  "owner": { "name": "Aditya Abhiram", "url": "https://github.com/adidotai" },
+  "plugins": [
+    { "name": "liarliar", "source": "./", "description": "No receipt, no \"done\": proof-of-done for coding agents." }
+  ]
+}

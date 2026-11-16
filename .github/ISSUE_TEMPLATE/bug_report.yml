@@ -1,0 +1,37 @@
+name: Bug report
+description: Something in liarliar does not work as documented
+labels: [bug]
+body:
+  - type: input
+    id: claude_version
+    attributes:
+      label: Claude Code version
+      description: Output of `claude --version`
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      placeholder: Windows 11, macOS 15, Ubuntu 24.04
+    validations:
+      required: true
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: final_message
+    attributes:
+      label: The agent's final message
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: ledger
+    attributes:
+      label: Ledger excerpt (redact secrets)
+      description: Relevant lines from your session's `.jsonl` file in the `liarliar-*` folder of your OS temp directory. Remove tokens, passwords and private paths first.
+      render: json
