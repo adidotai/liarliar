@@ -1,5 +1,7 @@
 > **AI agent asked to install this?** Follow [INSTALL.md](INSTALL.md) step by step.
 
+![liarliar logo: a flame with a check mark](assets/logo.svg)
+
 # liarliar
 
 [![CI](https://github.com/adidotai/liarliar/actions/workflows/ci.yml/badge.svg)](https://github.com/adidotai/liarliar/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-compatible-f97316.svg)](https://agentskills.io) [![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-8A63D2.svg)](#install)

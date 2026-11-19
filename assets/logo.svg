@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 512 512" role="img" aria-label="liarliar logo: a flame with a check mark">
+  <defs>
+    <linearGradient id="flame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbbf24"/>
+      <stop offset=".55" stop-color="#f97316"/>
+      <stop offset="1" stop-color="#ea580c"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="#0d1117"/>
+  <path fill="url(#flame)" d="M256 64C302 146 396 192 396 314C396 398 333 452 256 452C179 452 116 398 116 314C116 248 156 206 188 170C194 226 214 254 242 266C226 196 236 124 256 64Z"/>
+  <path d="M194 326L238 370L320 280" fill="none" stroke="#0d1117" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

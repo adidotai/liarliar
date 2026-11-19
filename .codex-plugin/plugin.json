@@ -1,6 +1,6 @@
 {
   "name": "liarliar",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Liar liar, tests on fire. Your coding agent says \"done\"; liarliar makes it prove it with a receipt.",
   "author": { "name": "Aditya Abhiram", "url": "https://github.com/adidotai" },
   "homepage": "https://github.com/adidotai/liarliar",
@@ -17,6 +17,9 @@
     "category": "Developer Tools",
     "capabilities": ["Interactive", "Read", "Write"],
     "defaultPrompt": ["Fix the failing test and show me the receipt."],
-    "websiteURL": "https://github.com/adidotai/liarliar"
+    "websiteURL": "https://github.com/adidotai/liarliar",
+    "brandColor": "#F97316",
+    "composerIcon": "./assets/logo.png",
+    "logo": "./assets/logo.png"
   }
 }

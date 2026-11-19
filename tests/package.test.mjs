@@ -114,6 +114,12 @@ test("the release workflow builds liarliar.zip with the skill folder at the zip 
   assert.match(wf, /gh release create/);
 });
 
+test("the release workflow takes its notes from the CHANGELOG section that matches the tag", () => {
+  const wf = read(".github/workflows/release.yml");
+  assert.match(wf, /GITHUB_REF_NAME##\*v/);
+  assert.doesNotMatch(wf, /## 0\.1\.0/);
+});
+
 test("README links the zip and both chat apps", () => {
   const readme = read("README.md");
   assert.match(readme, /releases\/latest\/download\/liarliar\.zip/);
@@ -123,8 +129,34 @@ test("README links the zip and both chat apps", () => {
 
 test("README embeds images with Markdown, not HTML", () => {
   const readme = read("README.md");
+  assert.match(readme, /!\[[^\]]*\]\(assets\/logo\.svg\)/);
   assert.match(readme, /!\[[^\]]*\]\(assets\/hero\.svg\)/);
   assert.ok(!readme.includes("<img"), "README must not use <img");
+});
+
+test("every plugin manifest points at the logo, a 512x512 PNG", () => {
+  assert.equal(json(".claude-plugin/plugin.json").icon, "./assets/logo.png");
+  const codex = json(".codex-plugin/plugin.json").interface;
+  assert.equal(codex.logo, "./assets/logo.png");
+  assert.equal(codex.composerIcon, "./assets/logo.png");
+  assert.equal(json(".cursor-plugin/plugin.json").logo, "assets/logo.png");
+  // Directory listing fields belong in plugin.json only; validate flags them in a marketplace entry.
+  assert.equal(json(".claude-plugin/marketplace.json").plugins[0].icon, undefined);
+  const buf = readFileSync(new URL("../assets/logo.png", import.meta.url));
+  assert.equal(buf.readUInt32BE(16), 512);
+  assert.equal(buf.readUInt32BE(20), 512);
+  assert.ok(buf.length < 102400, `size ${buf.length}`);
+});
+
+test("CI validates with Claude Code 2.1.281 or later, the first version that accepts the icon field", () => {
+  const pins = [...read(".github/workflows/ci.yml").matchAll(/claude-code@2\.1\.(\d+)/g)].map((m) => Number(m[1]));
+  assert.ok(pins.length >= 2 && pins.every((n) => n >= 281), `pins: ${pins.join(", ")}`);
+});
+
+test("CHANGELOG has a dated section for the manifest version", () => {
+  const version = json(".claude-plugin/plugin.json").version;
+  const heading = new RegExp(`^## ${version.replace(/\./g, "\\.")} \\(\\d{4}-\\d{2}-\\d{2}\\)$`, "m");
+  assert.match(read("CHANGELOG.md"), heading);
 });
 
 test("social preview is a 1280x640 PNG under 1 MB", () => {

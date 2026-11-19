@@ -32,4 +32,11 @@ jobs:
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" liarliar.zip --title "liarliar $GITHUB_REF_NAME" --notes-file <(sed -n '/^## 0.1.0/,/^## /p' CHANGELOG.md)
+        run: |
+          version="${GITHUB_REF_NAME##*v}"
+          awk -v h="## $version " 'index($0, h) == 1 { on = 1; print; next } on && /^## / { exit } on' CHANGELOG.md > notes.md
+          if [ ! -s notes.md ]; then
+            echo "CHANGELOG.md has no '## $version' section" >&2
+            exit 1
+          fi
+          gh release create "$GITHUB_REF_NAME" liarliar.zip --title "liarliar $GITHUB_REF_NAME" --notes-file notes.md

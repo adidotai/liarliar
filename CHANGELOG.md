@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1 (2026-11-19)
+
+- A logo: an orange flame with a check mark cut out (`assets/logo.svg`, and `assets/logo.png` at 512×512). The plugin manifests point at it: `icon` for Anthropic's plugin directory, `logo` and `composerIcon` for Codex, and `logo` for Cursor. The README shows it.
+- CI validates the manifests with Claude Code 2.1.311. Versions before 2.1.281 report the `icon` field as unknown, which fails `--strict`.
+- The release workflow takes the release notes from the CHANGELOG section that matches the tag, not always the 0.1.0 section.
+
 ## 0.1.0 (2026-11-19)
 
 - The liarliar skill and its receipt format.

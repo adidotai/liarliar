@@ -1,11 +1,12 @@
 {
   "name": "liarliar",
   "displayName": "liarliar",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Liar liar, tests on fire. Your coding agent says \"done\"; liarliar makes it prove it with a receipt of commands that actually ran.",
   "author": { "name": "Aditya Abhiram", "url": "https://github.com/adidotai" },
   "homepage": "https://github.com/adidotai/liarliar",
   "repository": "https://github.com/adidotai/liarliar",
   "license": "MIT",
+  "icon": "./assets/logo.png",
   "keywords": ["verification", "proof-of-done", "receipts", "hooks", "testing", "agent-harness"]
 }

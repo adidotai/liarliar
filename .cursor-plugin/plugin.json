@@ -2,11 +2,12 @@
   "name": "liarliar",
   "displayName": "liarliar",
   "description": "Liar liar, tests on fire. Your coding agent says \"done\"; liarliar makes it prove it with a receipt.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": { "name": "Aditya Abhiram", "url": "https://github.com/adidotai" },
   "homepage": "https://github.com/adidotai/liarliar",
   "repository": "https://github.com/adidotai/liarliar",
   "license": "MIT",
+  "logo": "assets/logo.png",
   "keywords": ["verification", "proof-of-done", "receipts", "testing", "skills"],
   "skills": "./skills/"
 }

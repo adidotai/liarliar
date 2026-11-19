@@ -12,6 +12,7 @@ the Stop hook checks it.
 
 - Tests: `node --test`
 - Validate: `claude plugin validate --strict .claude-plugin/plugin.json` and `claude plugin validate --strict .`
+  (Claude Code 2.1.281 or later; older versions reject the `icon` field. CI pins 2.1.311.)
 - Try the working copy live: `claude --plugin-dir .`
 - Headless runs don't load the repo's own plugin; use `claude --plugin-dir .` for scripted checks.
 
@@ -35,8 +36,9 @@ the Stop hook checks it.
 
 ## Releasing
 
-Bump all four manifest versions together, update CHANGELOG.md, run the tests and both validators, then tag `v0.1.0`
-and push the tag. The release workflow attaches `liarliar.zip`. The human's ordered checklist is
+Bump all four manifest versions together, add a dated `## <version> (YYYY-MM-DD)` section to CHANGELOG.md, run the
+tests and both validators, then tag `v<version>` and push the tag. The release workflow attaches `liarliar.zip` and
+uses that CHANGELOG section as the release notes. The human's ordered checklist is
 [docs/RELEASING.md](docs/RELEASING.md).
 
 ## If you are an AI agent opening a PR

@@ -12,6 +12,10 @@ claude plugin tag --dry-run .
 git status
 ```
 
+From 0.1.1 on, `plugin.json` has an `icon` field, and `--strict` validation needs Claude Code 2.1.281 or later (CI pins
+2.1.311). With an older `claude`, run `npx -y @anthropic-ai/claude-code@2.1.311 plugin validate --strict .` instead.
+For a release after 0.1.0, follow [Later releases](#later-releases) at the end.
+
 `claude plugin tag --dry-run .` prints `liarliar--v0.1.0` as its suggested tag. We tag `v0.1.0` instead. The
 release workflow (`.github/workflows/release.yml`) runs on both `v*` and `liarliar--v*`, so either form works; use
 one, never both.
@@ -112,7 +116,8 @@ Repo Settings, General, Social preview, Edit, Upload an image. Choose `assets/so
 ## 6. Date the changelog
 
 In `CHANGELOG.md`, change `## 0.1.0 (unreleased)` to `## 0.1.0 (YYYY-MM-DD)` with the real date. The heading must
-still start with `## 0.1.0`: the release workflow extracts the notes with `sed -n '/^## 0.1.0/,/^## /p'`.
+still start with `## 0.1.0 `: the release workflow uses the CHANGELOG section whose heading matches the tag's version
+as the release notes, and fails when there is none.
 
 ```bash
 git add CHANGELOG.md
@@ -180,3 +185,23 @@ name and shadows the local one.
 ## 11. Optional: claude.ai directory submission
 
 At `claude.ai/directory/manage`: Submit new, then Plugin bundle. It needs a paid plan, and the repo must be public.
+
+## Later releases
+
+The repo is already public, so a later release is short. Replace `X.Y.Z` with the new version.
+
+1. Set `"version": "X.Y.Z"` in `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`,
+   `.cursor-plugin/plugin.json` and `gemini-extension.json`.
+2. Add a `## X.Y.Z (YYYY-MM-DD)` section at the top of `CHANGELOG.md`. It becomes the release notes.
+3. Run the checks at the top of this page, then commit, push, tag and watch the release:
+
+```bash
+git push
+git tag vX.Y.Z
+git push origin vX.Y.Z
+gh run list --repo adidotai/liarliar --limit 3
+gh release view vX.Y.Z --repo adidotai/liarliar
+```
+
+`gh release view` must list `liarliar.zip`, and the notes must start with `## X.Y.Z`. Claude Code users get the new
+version with `claude plugin marketplace update liarliar`, then `claude plugin update liarliar@liarliar`.
